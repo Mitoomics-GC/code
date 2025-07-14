@@ -28,9 +28,9 @@ class ZFSD_Feature_Cal:
         self,
         root_dir,
         zfsd_path = "fragment_study/mis_10_splitedBy125/depth_stat_LS125_zfsd_mis10.csv",
-        baseline_zfsd="/mnt/hdd/usr/jiaohuanmin/home/jiaohm/Tools/mtDNA_pipeline/fragment_stduy_pipeline/fsd_baseline/cfDNA-probe/HC_sample_FSD_with_mean_median.csv",
-        baseline_smothed="/mnt/hdd/usr/jiaohuanmin/home/jiaohm/Tools/mtDNA_pipeline/fragment_stduy_pipeline/fsd_baseline/cfDNA-probe/30_HC_sample_zfsd_smothed.csv",
-        baseline_peaks_feature="/mnt/hdd/usr/jiaohuanmin/home/jiaohm/Tools/mtDNA_pipeline/fragment_stduy_pipeline/fsd_baseline/cfDNA-probe/30_HC_mean_data_after_smothed_para_51_1_peaks_filteredBywidth_5_peaks_feature.csv"
+        baseline_zfsd="/mnt/hdd/usr/jiaohuanmin/home/jiaohm/Tools/mtDNA_pipeline/fragment_stduy_pipeline/fsd_baseline_IGTprobe_26HC/HC26_sample_median_zfsd.csv",
+        baseline_smothed="/mnt/hdd/usr/jiaohuanmin/home/jiaohm/Tools/mtDNA_pipeline/fragment_stduy_pipeline/fsd_baseline_IGTprobe_26HC/HC26_sample_median_smothed.csv",
+        baseline_peaks_feature="/mnt/hdd/usr/jiaohuanmin/home/jiaohm/Tools/mtDNA_pipeline/fragment_stduy_pipeline/fsd_baseline_IGTprobe_26HC/HC26_sample_median_peaks_feature.csv"
     ):
         self.root_dir = root_dir
         self.zfsd_path = os.path.join(root_dir, zfsd_path)
@@ -41,14 +41,14 @@ class ZFSD_Feature_Cal:
         print(os.getcwd())
 
     def peaks(self,
-              peaks_path="fragment_study/mis_10_splitedBy125/FSD_DNA_baseline/peaks",
-              corr_path="fragment_study/mis_10_splitedBy125/FSD_DNA_baseline/corr",
+              peaks_path="fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/peaks",
+              corr_path="fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/corr",
               out1="smothed_para_51_1_filteredBywidth_5_peaks_feature_mis10.csv",
               out2="zfsd_smothed_para_51_1_mis10.csv",
               out3="similar2HC_peaks_feature_mis10.csv",
               out4="diff2HC_peaks_feature_mis10.csv",
               out5="similar_diff_peak_counts_mis10.csv",
-              out6="after_smothed_corr_with_mean_of_baseline_mis10.csv"):
+              out6="after_smothed_corr_with_median_of_baseline_mis10.csv"):
         baseline_peaks = pd.read_csv(self.baseline_peaks_feature,
                                      index_col=False)
         smothed = []
@@ -60,11 +60,12 @@ class ZFSD_Feature_Cal:
         d_cunts = {}
         dft = pd.read_csv(self.zfsd_path, index_col=False)
         for s in dft.columns:
+            #name = s.split("_")[1].split(".")[0]
             name = s
             y = savgol_filter(dft[s], 51, 1,
-                              mode="nearest") 
-            peaks_positive, _ = find_peaks(y, width=5)
-            peaks_negative, _ = find_peaks(-y, width=5)
+                              mode="nearest")  # 根据均值确定平滑曲线参数第一个参数51
+            peaks_positive, _ = find_peaks(y, distance = 5,width=5) #updated by add distance = 5
+            peaks_negative, _ = find_peaks(-y, distance = 5,width=5)
             peaks_cunt[name] = len(peaks_positive) + len(peaks_negative)
             w_positive = peak_widths(y, peaks_positive, rel_height=1)
             w_negative = peak_widths(-y, peaks_negative, rel_height=1)
@@ -148,12 +149,12 @@ class ZFSD_Feature_Cal:
 
         # 计算实验样本与baseline样本平滑后zfsd曲线相关性
         base_smothed = pd.read_csv(self.baseline_smothed,
-                                   usecols=["Mean"],
+                                   usecols=["median"],
                                    index_col=False)
         os.makedirs(corr_path, exist_ok=True)
         pearson = {}
         for col in data_filtered.columns:
-            pearson[col] = base_smothed["Mean"].corr(data_filtered[col])
+            pearson[col] = base_smothed["median"].corr(data_filtered[col])
         pd.DataFrame.from_dict(pearson, orient="index",
                                columns=["pearson"]).to_csv(
                                    os.path.join(self.root_dir, corr_path,
@@ -163,7 +164,7 @@ class ZFSD_Feature_Cal:
 
     def euclidean_distance(
             self,
-            ed_path="fragment_study/mis_10_splitedBy125/FSD_DNA_baseline/ED",
+            ed_path="fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/ED",
             output1="euclidean_of_zfsd_and_HC_median_mis10.csv",
             output2="euclidean_of_zfsd_and_HC_median_in_255_mis10.csv",
             output3="excluded_samples_mis10.csv"):
@@ -214,7 +215,7 @@ class ZFSD_Feature_Cal:
         print("euclidean_distance calculate done,results saved~")
 
     def audc(self,
-             audc_path="fragment_study/mis_10_splitedBy125/FSD_DNA_baseline/AUDC",
+             audc_path="fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/AUDC",
              output1="255_audc_posi_mis10.csv",
              output2="255_audc_nega_mis10.csv"):
         # 计算曲线下面积
