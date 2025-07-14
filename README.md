@@ -1,4 +1,3 @@
-# GC
 ## Title
 ### Contents
 * [Overview](#Overview)
