@@ -83,22 +83,22 @@ fragment_study
     ├── fragment_study/mis_10_splitedBy125/depth_stat_LS125_cunt.csv
     ├── fragment_study/mis_10_splitedBy125/depth_stat_LS125_ratio.csv
     ├── fragment_study/mis_10_splitedBy125/depth_stat_LS125_zfsd.csv
-    └── fragment_study/mis_10_splitedBy125/FSD
-        ├── fragment_study/mis_10_splitedBy125/FSD/AUDC
-        │   ├── fragment_study/mis_10_splitedBy125/FSD/AUDC/255_audc_nega.csv
-        │   └── fragment_study/mis_10_splitedBy125/FSD/AUDC/255_audc_posi.csv
-        ├── fragment_study/mis_10_splitedBy125/FSD/corr
-        │   └── fragment_study/mis_10_splitedBy125/FSD/corr/after_smothed_corr_with_mean_of_baseline.csv
-        ├── fragment_study/mis_10_splitedBy125/FSD/ED
-        │   ├── fragment_study/mis_10_splitedBy125/FSD/ED/euclidean_of_zfsd_and_HC_median.csv
-        │   ├── fragment_study/mis_10_splitedBy125/FSD/ED/euclidean_of_zfsd_and_HC_median_in_255.csv
-        │   └── fragment_study/mis_10_splitedBy125/FSD/ED/excluded_samples.csv
-        └── fragment_study/mis_10_splitedBy125/FSD/peaks
-            ├── fragment_study/mis_10_splitedBy125/FSD/peaks/diff2HC_peaks_feature.csv
-            ├── fragment_study/mis_10_splitedBy125/FSD/peaks/similar2HC_peaks_feature.csv
-            ├── fragment_study/mis_10_splitedBy125/FSD/peaks/similar_diff_peak_counts.csv
-            ├── fragment_study/mis_10_splitedBy125/FSD/peaks/smothed_para_51_1_filteredBywidth_5_peaks_feature.csv
-            └── fragment_study/mis_10_splitedBy125/FSD/peaks/zfsd_smothed_para_51_1.csv
+    └── fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline
+        ├── fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/AUDC
+        │   ├── fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/AUDC/255_audc_nega.csv
+        │   └── fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/AUDC/255_audc_posi.csv
+        ├── fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/corr
+        │   └── fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/corr/after_smothed_corr_with_mean_of_baseline.csv
+        ├── fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/ED
+        │   ├── fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/ED/euclidean_of_zfsd_and_HC_median.csv
+        │   ├── fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/ED/euclidean_of_zfsd_and_HC_median_in_255.csv
+        │   └── fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/ED/excluded_samples.csv
+        └── fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/peaks
+            ├── fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/peaks/diff2HC_peaks_feature.csv
+            ├── fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/peaks/similar2HC_peaks_feature.csv
+            ├── fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/peaks/similar_diff_peak_counts.csv
+            ├── fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/peaks/smothed_para_51_1_filteredBywidth_5_peaks_feature.csv
+            └── fragment_study/mis_10_splitedBy125/FSD-RNA-26HC-new-baseline/peaks/zfsd_smothed_para_51_1.csv
 ```
 
 ### Issues
