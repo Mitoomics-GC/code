@@ -6,7 +6,7 @@
 * [Running and outputs](#Running-and-outputs)
 * [Issues](#Issues)
 ### Overview
-CRC_code is a package containing tools for comprehensive analysis of cf-mtDNA fragmentomic features, that is capable of dealing with sequencing data. The code also  can be employed to calculate the probability of developing gastric cancer, thereby enhancing the capabilities for early detection of gastric cancer.
+GC_code is a package containing tools for comprehensive analysis of cf-mtDNA fragmentomic features, that is capable of dealing with sequencing data. The code also  can be employed to calculate the probability of developing gastric cancer, thereby enhancing the capabilities for early detection of gastric cancer.
 ### System Requirements
 *Hardware Requirements*
 
